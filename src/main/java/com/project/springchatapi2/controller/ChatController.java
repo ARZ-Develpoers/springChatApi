@@ -3,6 +3,7 @@ package com.project.springchatapi2.controller;
 import com.project.springchatapi2.config.JwtTokenProvider;
 import com.project.springchatapi2.model.ChatMessage;
 import com.project.springchatapi2.repo.ChatRoomRepository;
+import com.project.springchatapi2.service.ChatService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -25,6 +26,8 @@ public class ChatController {
     private final RedisTemplate redisTemplate;
     private final ChannelTopic channelTopic;
 
+    private final ChatService chatService;
+
     @MessageMapping("/chat/message")
     public void message(ChatMessage message, @Header("token") String token) {
         log.info("토큰맨"+token);
@@ -32,13 +35,15 @@ public class ChatController {
         String nickName = jwtTokenProvider.getUserNameFroJwt(token);
         message.setSender(nickName);
 
-        if (ChatMessage.MessageType.ENTER.equals(message.getType())){
+        message.setUserCount(chatRoomRepository.getUserCount(message.getRoomId()));
+        chatService.sendChatMessage(message);
+       /* if (ChatMessage.MessageType.ENTER.equals(message.getType())){
             //chatRoomRepository.enterChatRoom(message.getRoomId());
             message.setSender("[알림]");
             message.setMessage(nickName + "님이 입장하셨습니다.");
         }
 
         //redisPublisher.publish(chatRoomRepository.getTopic(message.getRoomId()),message);
-        redisTemplate.convertAndSend(channelTopic.getTopic(), message);
+        redisTemplate.convertAndSend(channelTopic.getTopic(), message);*/
     }
 }

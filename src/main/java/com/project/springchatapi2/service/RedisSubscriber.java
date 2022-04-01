@@ -36,7 +36,7 @@ public class RedisSubscriber implements MessageListener {
         }
     }
 
-    public void sendMessage(String publishMessage){
+ /*   public void sendMessage(String publishMessage){
         try{
             ChatMessage chatMessage = objectMapper.readValue(publishMessage, ChatMessage.class);
 
@@ -44,5 +44,5 @@ public class RedisSubscriber implements MessageListener {
         }catch (Exception e){
             log.error("Exception {}", e);
         }
-    }
+    }*/
 }

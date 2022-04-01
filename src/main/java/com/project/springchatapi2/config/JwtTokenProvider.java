@@ -35,7 +35,6 @@ public class JwtTokenProvider {
     }
 
     private Jws<Claims> getClaims(String jwt){
-        log.info("송영민 체크"+jwt);
         try{
             return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwt);
         } catch (SignatureException ex){
