@@ -30,20 +30,11 @@ public class ChatController {
 
     @MessageMapping("/chat/message")
     public void message(ChatMessage message, @Header("token") String token) {
-        log.info("토큰맨"+token);
 
         String nickName = jwtTokenProvider.getUserNameFroJwt(token);
         message.setSender(nickName);
 
         message.setUserCount(chatRoomRepository.getUserCount(message.getRoomId()));
         chatService.sendChatMessage(message);
-       /* if (ChatMessage.MessageType.ENTER.equals(message.getType())){
-            //chatRoomRepository.enterChatRoom(message.getRoomId());
-            message.setSender("[알림]");
-            message.setMessage(nickName + "님이 입장하셨습니다.");
-        }
-
-        //redisPublisher.publish(chatRoomRepository.getTopic(message.getRoomId()),message);
-        redisTemplate.convertAndSend(channelTopic.getTopic(), message);*/
     }
 }
