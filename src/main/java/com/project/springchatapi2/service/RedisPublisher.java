@@ -1,3 +1,4 @@
+/*
 package com.project.springchatapi2.service;
 
 import com.project.springchatapi2.model.ChatMessage;
@@ -15,3 +16,4 @@ public class RedisPublisher {
         redisTemplate.convertAndSend(topic.getTopic(), message);
     }
 }
+*/

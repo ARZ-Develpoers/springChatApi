@@ -35,4 +35,14 @@ public class RedisSubscriber implements MessageListener {
             log.error(e.getMessage());
         }
     }
+
+    public void sendMessage(String publishMessage){
+        try{
+            ChatMessage chatMessage = objectMapper.readValue(publishMessage, ChatMessage.class);
+
+            messagingTemplate.convertAndSend("/sub/chat/room/" + chatMessage.getRoomId(), chatMessage);
+        }catch (Exception e){
+            log.error("Exception {}", e);
+        }
+    }
 }
