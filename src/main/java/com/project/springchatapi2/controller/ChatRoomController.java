@@ -5,6 +5,7 @@ import com.project.springchatapi2.model.ChatRoom;
 import com.project.springchatapi2.model.LoginInfo;
 import com.project.springchatapi2.repo.ChatRoomRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import java.util.List;
 
 // import 생략...
 
+@Slf4j
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/chat")
@@ -27,7 +29,8 @@ public class ChatRoomController {
     // 채팅 리스트 화면
     @GetMapping("/room")
     public String rooms(Model model) {
-        return "/chat/room";
+        log.info("test");
+        return "chat/room2";
     }
     // 모든 채팅방 목록 반환
     @GetMapping("/rooms")

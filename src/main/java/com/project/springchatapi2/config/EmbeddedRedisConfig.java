@@ -7,18 +7,19 @@ import redis.embedded.RedisServer;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.io.IOException;
 
 @Profile("local")
 @Configuration
 public class EmbeddedRedisConfig {
 
-    @Value("${spring.redis.port")
+    @Value("${spring.redis.port}")
     private int redisPort;
 
     private RedisServer redisServer;
 
     @PostConstruct
-    public void redisServer(){
+    public void redisServer() throws IOException {
         redisServer = new RedisServer(redisPort);
         redisServer.start();
     }

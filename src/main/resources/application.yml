@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: local
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: false
+    add-properties: false
+    freemarker:
+      cache: false
+#logging:
+#  level:
+#    web: DEBUG

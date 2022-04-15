@@ -85,7 +85,8 @@ public class ChatRoomRepository {
     }
 
     public long plusUserCount(String roomId){
-        return Optional.ofNullable(valueOps.increment(USER_COUNT + "_" + roomId)).orElse(0L);
+        //return Optional.ofNullable(valueOps.increment(USER_COUNT + "_" + roomId)).orElse(0L);
+        return Optional.ofNullable(valueOps.increment(USER_COUNT+"_"+roomId)).orElse(0L);
     }
 
     public long minusUserCount(String roomId){
