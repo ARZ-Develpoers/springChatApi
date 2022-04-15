@@ -25,6 +25,15 @@ public class StompHandler implements ChannelInterceptor {
     private final ChatRoomRepository chatRoomRepository;
     private final ChatService chatService;
 
+   
+    /**
+      * preSend : 해당 부분에서 소켓에 들어오는 데이터 관련 처리를 진행해서 REDIS 에 PUB 도 할수 있는 처리를 해주는 것으로 보임
+      * 
+      * @param 
+      * @return 
+      * @throws 
+      */
+      
     // websocket을 통해 들어온 요청이 처리 되기전 실행된다.
     @Override
     public Message<?> preSend(Message<?> message, MessageChannel channel) {

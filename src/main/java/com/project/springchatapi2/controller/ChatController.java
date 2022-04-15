@@ -28,6 +28,13 @@ public class ChatController {
 
     private final ChatService chatService;
 
+    /**
+      * message : PUB 을 하면 호출
+      *
+      * @param
+      * @return
+      * @throws
+      */
     @MessageMapping("/chat/message")
     public void message(ChatMessage message, @Header("token") String token) {
 
