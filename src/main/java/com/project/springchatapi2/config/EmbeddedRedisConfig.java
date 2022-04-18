@@ -1,3 +1,4 @@
+/*
 package com.project.springchatapi2.config;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -30,4 +31,4 @@ public class EmbeddedRedisConfig {
             redisServer.stop();;
         }
     }
-}
+}*/

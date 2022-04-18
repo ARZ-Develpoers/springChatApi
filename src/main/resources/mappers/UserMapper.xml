@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.springchatapi2.Mapper.UserMapper">
+
+    <!--  공지사항 등록 -->
+    <insert id="addNoticeAction">
+        insert into notice (subject,content,author,read_count,reg_date)
+        values
+            (#{subject}, #{content}, #{author}, 0, sysdate())
+    </insert>
+
+    <!-- 공지 사항 전체 조회-->
+    <select id='getNotices' resultType="com.song.kyung.Vo.Notice">
+        SELECT
+            id,
+            subject,
+            author,
+            read_count,
+            reg_date
+        from notice
+        order by id desc
+    </select>
+
+    <!-- 공지 사항 단건 조회-->
+    <select id='getNoticeById' resultType="com.song.kyung.Vo.Notice" parameterType='int'>
+        SELECT
+            id,
+            subject,
+            content,
+            author,
+            read_count,
+            reg_date
+        from notice
+        where id = #{id}
+    </select>
+
+    <!-- 공지 사항 삭제 -->
+
+    <delete id='deleteNoticeById' parameterType='int'>
+        delete
+        from notice
+        where id = #{id}
+    </delete>
+
+    <update id="setNoticeById" >
+        UPDATE   notice
+        SET     subject = #{subject}
+          , content = #{content}
+        WHERE     id = #{id}
+    </update>
+
+    <!-- 공지 사항 조회 수 증가 -->
+    <update id="addReadCount" parameterType='int'>
+        UPDATE   notice
+        SET     read_count = read_count+1
+        WHERE     id = #{id}
+    </update>
+</mapper>
