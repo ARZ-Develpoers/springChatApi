@@ -5,6 +5,7 @@ import com.project.springchatapi2.domain.tUsr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -13,12 +14,12 @@ public class UserService {
     @Autowired
     UserMapper userMapper;
 
-    private int addUser(tUsr tUsr){
-        return userMapper.addUser(tUsr);
+    public int addUser(tUsr tusr){
+        return userMapper.addUser(tusr);
     }
 
-    public List<tUsr> getUsers(){
-        return userMapper.getUsers();
+    public List<tUsr> getUsers(HashMap<String, Object> serviceParamMap) throws Exception{
+        return userMapper.getUsers(serviceParamMap);
     }
 
     public tUsr getUserByUseKey(int usrKey){
@@ -29,7 +30,7 @@ public class UserService {
         return userMapper.deleteUserByUsrKey(usrKey);
     }
 
-    public int setUserByUsrKey(tUsr tUsr){
+    public int setUser(tUsr tUsr){
         return userMapper.setUserBy(tUsr);
     }
 }

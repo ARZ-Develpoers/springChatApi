@@ -1,3 +1,4 @@
+/*
 package com.project.springchatapi2.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -27,3 +28,4 @@ public class MybatisConfig {
         return sessionFactory.getObject();
     }
 }
+*/

@@ -1,10 +1,14 @@
 package com.project.springchatapi2.domain;
 
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
+@AllArgsConstructor
 @RequiredArgsConstructor
+@Getter
+@Setter
+@Builder
 public class tUsr {
 
     private int usrKey;
