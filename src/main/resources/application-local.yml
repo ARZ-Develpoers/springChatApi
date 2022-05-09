@@ -4,3 +4,9 @@ spring:
     port: 6379
   jwt:
     secret: govlepel@$&
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mydb?characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 1234

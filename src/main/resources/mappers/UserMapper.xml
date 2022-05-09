@@ -3,16 +3,42 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.project.springchatapi2.mapper.UserMapper">
+<mapper namespace="com.project.springchatapi2.api.mapper.UserMapper">
 
-    <!--  공지사항 등록 -->
+   <select id='getUsers' resultType="com.project.springchatapi2.domain.tUsr">
+      SELECT
+             USR_KEY,
+             USR_HP_NUM,
+             USR_NICK,
+             USR_TYPE,
+             USR_PW,
+             USR_NM,
+             USR_SEX,
+             USR_BIRTH_DAY,
+             USR_LOC_LON,
+             USR_LOC_DET,
+             USR_EMAIL,
+             USR_DEVICE_OS_TYPE,
+             USR_APP_VER,
+             USR_LOGIN_FAIL_CNT,
+             USR_PUSH_YN,
+             REG_DT,
+             REG_USR_KEY,
+             MOD_DT,
+             MOD_USR_KEY,
+             STATE,
+             VER
+             FROM T_USR
+   </select>
+
+   <!-- &lt;!&ndash;  공지사항 등록 &ndash;&gt;
     <insert id="addNoticeAction">
         insert into notice (subject,content,author,read_count,reg_date)
         values
             (#{subject}, #{content}, #{author}, 0, sysdate())
     </insert>
 
-    <!-- 공지 사항 전체 조회-->
+    &lt;!&ndash; 공지 사항 전체 조회&ndash;&gt;
     <select id='getNotices' resultType="com.song.kyung.Vo.Notice">
         SELECT
             id,
@@ -24,7 +50,7 @@
         order by id desc
     </select>
 
-    <!-- 공지 사항 단건 조회-->
+    &lt;!&ndash; 공지 사항 단건 조회&ndash;&gt;
     <select id='getNoticeById' resultType="com.song.kyung.Vo.Notice" parameterType='int'>
         SELECT
             id,
@@ -37,7 +63,7 @@
         where id = #{id}
     </select>
 
-    <!-- 공지 사항 삭제 -->
+    &lt;!&ndash; 공지 사항 삭제 &ndash;&gt;
 
     <delete id='deleteNoticeById' parameterType='int'>
         delete
@@ -52,10 +78,10 @@
         WHERE     id = #{id}
     </update>
 
-    <!-- 공지 사항 조회 수 증가 -->
+    &lt;!&ndash; 공지 사항 조회 수 증가 &ndash;&gt;
     <update id="addReadCount" parameterType='int'>
         UPDATE   notice
         SET     read_count = read_count+1
         WHERE     id = #{id}
-    </update>
+    </update>-->
 </mapper>

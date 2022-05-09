@@ -1,4 +1,4 @@
-spring:
+eeespring:
   profiles:
     active: local
   redis:
