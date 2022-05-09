@@ -1,0 +1,34 @@
+package com.project.springchatapi2.domain;
+
+import lombok.*;
+
+import java.util.Date;
+
+@AllArgsConstructor
+@RequiredArgsConstructor
+@Getter
+@Setter
+@Builder
+public class tChatRoom {
+    private int crKey;
+
+    private int opKey;
+
+    private String crType;
+
+    private String crTitle;
+
+    private String crNtc;
+
+    private Date regDt;
+
+    private int regUsrKey;
+
+    private Date modDt;
+
+    private int modUsrKey;
+
+    private String state;
+
+    private int ver;
+}
