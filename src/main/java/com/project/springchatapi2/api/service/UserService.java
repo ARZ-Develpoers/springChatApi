@@ -2,12 +2,14 @@ package com.project.springchatapi2.api.service;
 
 import com.project.springchatapi2.api.mapper.UserMapper;
 import com.project.springchatapi2.domain.tUsr;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 
+@Slf4j
 @Service
 public class UserService {
 
@@ -19,6 +21,7 @@ public class UserService {
     }
 
     public List<tUsr> getUsers(HashMap<String, Object> serviceParamMap) throws Exception{
+        log.info("test");
         return userMapper.getUsers(serviceParamMap);
     }
 
@@ -30,7 +33,7 @@ public class UserService {
         return userMapper.deleteUserByUsrKey(usrKey);
     }
 
-    public int setUser(tUsr tUsr){
-        return userMapper.setUserBy(tUsr);
+    public int setUserByUsrKey(tUsr tUsr){
+        return userMapper.setUserByUsrKey(tUsr);
     }
 }

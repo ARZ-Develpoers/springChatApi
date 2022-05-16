@@ -111,7 +111,7 @@ public class UserController {
         usr.setState(tusr.getState());
         usr.setVer(tusr.getVer());
 
-        int result = userService.setUser(usr);
+        int result = userService.setUserByUsrKey(usr);
         return result;
     }
 

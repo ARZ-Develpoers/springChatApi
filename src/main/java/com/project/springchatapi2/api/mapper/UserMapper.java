@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface UserMapper {
 
-    public int addUser(tUsr tUsr);
-
     public List<tUsr> getUsers(HashMap<String, Object> serviceParamMap);
 
     public tUsr getUserByUsrKey(int usrKey);
 
+    public int addUser(tUsr tUsr);
+
     public int deleteUserByUsrKey(int usrKey);
 
-    public int setUserBy(tUsr tUsr);
+    public int setUserByUsrKey(tUsr tUsr);
 }

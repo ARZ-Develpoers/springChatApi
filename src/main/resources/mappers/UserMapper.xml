@@ -31,57 +31,111 @@
              FROM T_USR
    </select>
 
-   <!-- &lt;!&ndash;  공지사항 등록 &ndash;&gt;
-    <insert id="addNoticeAction">
-        insert into notice (subject,content,author,read_count,reg_date)
-        values
-            (#{subject}, #{content}, #{author}, 0, sysdate())
-    </insert>
 
-    &lt;!&ndash; 공지 사항 전체 조회&ndash;&gt;
-    <select id='getNotices' resultType="com.song.kyung.Vo.Notice">
-        SELECT
-            id,
-            subject,
-            author,
-            read_count,
-            reg_date
-        from notice
-        order by id desc
-    </select>
+   <select id='getUserByUsrKey' resultType="com.project.springchatapi2.domain.tUsr" parameterType='int'>
+          SELECT
+                 USR_KEY,
+                 USR_HP_NUM,
+                 USR_NICK,
+                 USR_TYPE,
+                 USR_PW,
+                 USR_NM,
+                 USR_SEX,
+                 USR_BIRTH_DAY,
+                 USR_LOC_LON,
+                 USR_LOC_DET,
+                 USR_EMAIL,
+                 USR_DEVICE_OS_TYPE,
+                 USR_APP_VER,
+                 USR_LOGIN_FAIL_CNT,
+                 USR_PUSH_YN,
+                 REG_DT,
+                 REG_USR_KEY,
+                 MOD_DT,
+                 MOD_USR_KEY,
+                 STATE,
+                 VER
+          FROM T_USR
+          WHERE USR_KEY = #{usrKey}
+   </select>
 
-    &lt;!&ndash; 공지 사항 단건 조회&ndash;&gt;
-    <select id='getNoticeById' resultType="com.song.kyung.Vo.Notice" parameterType='int'>
-        SELECT
-            id,
-            subject,
-            content,
-            author,
-            read_count,
-            reg_date
-        from notice
-        where id = #{id}
-    </select>
+   <insert id="addUser">
+          INSERT INTO T_USR
+              (
+                     USR_KEY,
+                     USR_HP_NUM,
+                     USR_NICK,
+                     USR_TYPE,
+                     USR_PW,
+                     USR_NM,
+                     USR_SEX,
+                     USR_BIRTH_DAY,
+                     USR_LOC_LON,
+                     USR_LOC_DET,
+                     USR_EMAIL,
+                     USR_DEVICE_OS_TYPE,
+                     USR_APP_VER,
+                     USR_LOGIN_FAIL_CNT,
+                     USR_PUSH_YN,
+                     REG_DT,
+                     REG_USR_KEY,
+                     MOD_DT,
+                     MOD_USR_KEY,
+                     STATE,
+                     VER
+              )
+              values
+          (
+           #{usrKey},
+           #{usrHpNum},
+           #{usrNick},
+           #{usrType},
+           #{usrPw},
+           #{usrNm},
+           #{usrSex},
+           #{usrBirthDay},
+           #{usrLocLon},
+           #{usrLocDet},
+           #{usrEmail},
+           #{usrDeviceOsType},
+           #{usrAppVer},
+           #{usrLoginFailCnt},
+           #{usrPushYn},
+           now(),
+           #{regUsrKey},
+           null,
+           null,
+           #{state},
+           #{ver}
+           )
+   </insert>
 
-    &lt;!&ndash; 공지 사항 삭제 &ndash;&gt;
+   <delete id='deleteUserByUsrKey' parameterType='int'>
+           delete
+           from T_USR
+           where usr_key = #{usrKey}
+   </delete>
 
-    <delete id='deleteNoticeById' parameterType='int'>
-        delete
-        from notice
-        where id = #{id}
-    </delete>
-
-    <update id="setNoticeById" >
-        UPDATE   notice
-        SET     subject = #{subject}
-          , content = #{content}
-        WHERE     id = #{id}
-    </update>
-
-    &lt;!&ndash; 공지 사항 조회 수 증가 &ndash;&gt;
-    <update id="addReadCount" parameterType='int'>
-        UPDATE   notice
-        SET     read_count = read_count+1
-        WHERE     id = #{id}
-    </update>-->
+   <update id="setUserByUsrKey" >
+           UPDATE   T_USR
+           <set>
+               <if test="usrHpNum!='' and usrHpNum !=null"> USR_HP_NUM = #{usrHpNum},</if>
+               <if test="usrNick!='' and usrNick !=null">        USR_NICK = #{usrNick},</if>
+               <if test="usrType!='' and usrType !=null">        USR_TYPE = #{usrType},</if>
+               <if test="usrPw!='' and usrPw !=null">        USR_PW = #{usrPw},</if>
+               <if test="usrNm!='' and usrNm !=null">        USR_NM= #{usrNm},</if>
+               <if test="usrSex!='' and usrSex !=null">        USR_SEX = #{usrSex},</if>
+               <if test="usrBirthDay!='' and usrBirthDay !=null">    USR_BIRTH_DAY = #{usrBirthDay},</if>
+               <if test="usrLocLon!='' and usrLocLon !=null">     USR_LOC_LON = #{usrLocLon},</if>
+               <if test="usrLocDet!='' and usrLocDet !=null">     USR_LOC_DET = #{usrLocDet},</if>
+               <if test="usrEmail!='' and usrEmail !=null">         USR_EMAIL = #{usrEmail},</if>
+               <if test="usrDeviceOsType!='' and usrDeviceOsType !=null">    USR_DEVICE_OS_TYPE = #{usrDeviceOsType},</if>
+               <if test="usrAppVer!='' and usrAppVer !=null">            USR_APP_VER = #{usrAppVer},</if>
+               <if test="usrLoginFailCnt!='' and usrLoginFailCnt !=null">     USR_LOGIN_FAIL_CNT = #{usrLoginFailCnt},</if>
+               <if test="usrPushYn!='' and usrPushYn !=null">         USR_PUSH_YN = #{usrPushYn},</if>
+               <if test="state!='' and state !=null">              STATE = #{state},</if>
+               <if test="ver!='' and ver !=null">                  VER = #{ver}                     </if>
+           </set>
+          WHERE USR_KEY = #{usrKey}
+   </update>
 </mapper>
